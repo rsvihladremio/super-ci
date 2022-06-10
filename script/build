@@ -1,3 +1,5 @@
 #!/bin/sh
 
+# script/build:   Deploy to bin folder
+
 go build -o bin/superci .

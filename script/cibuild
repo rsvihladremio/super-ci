@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# script/cibuild: Setup environment for CI to run tests. This is primarily
+#                 designed to run on the continuous integration server.
+
+echo "==> Verifying dependencies"
+./script/bootstrap
+
+echo "==> Validating build"
+./script/build
+
+echo "==> Running lint"
+./script/lint
+
+echo "==> Running test"
+./script/test

@@ -1,0 +1,27 @@
+#!/bin/sh
+
+# script/bootstrap: Resolve all dependencies that the application requires to
+#                   run.
+
+
+set -e
+
+cd "$(dirname "$0")/.."
+
+echo "==> Bootstrapping environment"
+
+if ! command -v zip &> /dev/null
+then
+    echo "installing zip with brew go to brew.sh to install brew"
+    brew install zip
+fi
+if ! command -v go &> /dev/null
+then
+    echo "installing go with brew go to brew.sh to install brew"
+    brew install go 
+fi
+if ! command -v golangci-lint &> /dev/null
+then
+    echo "golangci-lint could not be found installing"
+    curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.46.2
+fi

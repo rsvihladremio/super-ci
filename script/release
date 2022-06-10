@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# script/release: build several binaries, cut a github release 
+#                 and push the new builds up to it
+
+
+GOOS=windows GOARCH=amd64 go build -o bin/super-ci.exe ./...
+zip bin/super-ci-windows-amd64.zip bin/super-ci.exe 
+GOOS=linux GOARCH=amd64 go build -o bin/super-ci ./...
+zip bin/super-ci-linux-amd64.zip bin/super-ci 
+GOOS=darwin GOARCH=amd64 go build -o bin/super-ci ./...
+zip bin/super-ci-darwin-amd64.zip bin/super-ci
+GOOS=darwin GOARCH=arm64 go build -o bin/super-ci ./...
+zip bin/super-ci-darwin-arm64.zip bin/super-ci
+rm bin/super-ci
+rm bin/super-ci.exe

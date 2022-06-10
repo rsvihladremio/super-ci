@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# script/lint: Validate formatting and code quality 
+
+echo "==> Running lint"
+golangci-lint run
+echo "==> Checking file formatting"
+ gofmt -l -d -s .
